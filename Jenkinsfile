@@ -14,7 +14,15 @@ pipeline {
                 sh 'mvn package'
             }
         }
+    stage('Fetch') {
+        steps {
+            sh 'git rev-parse --resolve-git-dir /var/lib/jenkins/workspace/New_main@2/.git'
+            sh 'git config remote.origin.url https://github.com/nishant243/Jenkins.git'
+            sh 'git fetch --no-tags --force --progress -- https://github.com/nishant243/Jenkins.gitgit +refs/heads/main:refs/remotes/origin/main'
+        }
+    }
 
+    // Rest of the stages...
 
         stage("SonarQube analysis") {
             agent any
