@@ -3,7 +3,6 @@ pipeline {
 
     environment {
         function_name = 'Jenkinsjava'
-'
     }
 
     stages {
