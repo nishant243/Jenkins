@@ -15,7 +15,6 @@ pipeline {
             }
         }
         
-    stages {
         stage('Checkout') {
             steps {
                 script {
@@ -36,8 +35,7 @@ pipeline {
                 }
             }
         }
-    }
-
+    
         stage("SonarQube analysis") {
             agent any
 
