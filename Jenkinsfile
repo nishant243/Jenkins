@@ -20,7 +20,7 @@ pipeline {
                 // Fetching changes from the remote Git repository
                 sh "git rev-parse --resolve-git-dir /var/lib/jenkins/workspace/sonar_analysis_main@2/.git"
                 sh "git config remote.origin.url https://github.com/nishant243/Jenkins.git"
-                sh "git fetch --no-tags --force --progress -- ${GIT_CREDENTIALS}@https://github.com/nishant243/Jenkins.git +refs/heads/main:refs/remotes/origin/main"
+                sh "git fetch --no-tags --force --progress -- https://github.com/nishant243/Jenkins.git +refs/heads/main:refs/remotes/origin/main"
             }
         }
 
