@@ -10,6 +10,27 @@ pipeline {
             }
         }
 
+        stage('Fetch') {
+            steps {
+                // Setting up Git credentials
+                withCredentials([string(credentialsId: 'a8258d45-efae-4d28-86bf-79340a5e8a00', variable: 'GIT_CREDENTIALS')]) {
+                    sh "git config --global credential.helper 'store --file ~/.git-credentials'"
+                }
+
+                // Fetching changes from the remote Git repository
+                sh "git rev-parse --resolve-git-dir /var/lib/jenkins/workspace/sonar_analysis_main@2/.git"
+                sh "git config remote.origin.url https://github.com/nishant243/Jenkins.git"
+                sh "git fetch --no-tags --force --progress -- ${GIT_CREDENTIALS}@https://github.com/nishant243/Jenkins.git +refs/heads/main:refs/remotes/origin/main"
+            }
+        }
+
+        stage('Checkout') {
+            steps {
+                // Checking out the specified revision
+                sh "git checkout -f b4ca0a180b2733b829f5d85780bad7d5e681c7ed"
+            }
+        }
+
         stage("SonarQube analysis") {
             agent any
             when {
