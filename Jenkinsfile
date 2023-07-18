@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        function_name = 'Jenkinsjava
+        function_name = 'Jenkinsjava'
 '
     }
 
