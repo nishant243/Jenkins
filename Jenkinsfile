@@ -14,6 +14,7 @@ pipeline {
                 sh 'mvn package'
             }
         }
+        
     stages {
         stage('Checkout') {
             steps {
@@ -34,6 +35,8 @@ pipeline {
                     }
                 }
             }
+        }
+    }
 
         stage("SonarQube analysis") {
             agent any
