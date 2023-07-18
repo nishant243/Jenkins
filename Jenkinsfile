@@ -56,12 +56,9 @@ pipeline {
                 echo 'Push'
             }
         }
-
         // Ci Ended
 
         // CD Started
-
-       
         stage('Deploy to Dev') {
             steps {
                 echo 'Build'
@@ -76,7 +73,6 @@ pipeline {
                 echo 'Build'
             }
         }
-            
-    }
         // CD Ended
+    }
 }
