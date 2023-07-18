@@ -24,13 +24,6 @@ pipeline {
             }
         }
 
-        stage('Checkout') {
-            steps {
-                // Checking out the specified revision
-                sh "git checkout -f b4ca0a180b2733b829f5d85780bad7d5e681c7ed"
-            }
-        }
-
         stage("SonarQube analysis") {
             agent any
             when {
