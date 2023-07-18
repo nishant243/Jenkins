@@ -14,28 +14,8 @@ pipeline {
                 sh 'mvn package'
             }
         }
-        
-        stage('Checkout') {
-            steps {
-                script {
-                    def gitUrl = 'https://github.com/nishant243/Jenkins.git'
-                    def commitHash = 'f944253d2758129acbbc59db6c2697b8ce07543e'
-                    def repoDir = '/var/lib/jenkins/workspace/sonar_analysis_main@2'
 
-                    // Clone the repository
-                    git credentialsId: 'a8258d45-efae-4d28-86bf-79340a5e8a00',
-                        url: gitUrl,
-                        branch: 'main',
-                        skipTag: true
 
-                    // Checkout the specific commit
-                    dir(repoDir) {
-                        sh "git checkout -f ${commitHash}"
-                    }
-                }
-            }
-        }
-    
         stage("SonarQube analysis") {
             agent any
 
@@ -70,7 +50,7 @@ pipeline {
             steps {
                 echo 'Push'
 
-               // sh "aws s3 cp target/sample-1.0.3.jar s3://bermtecbatch31"
+                //sh "aws s3 cp target/sample-1.0.3.jar s3://javasample1"
             }
         }
 
@@ -85,7 +65,7 @@ pipeline {
                     steps {
                         echo 'Build'
 
-                        // sh "aws lambda update-function-code --function-name $function_name --region us-east-1 --s3-bucket bermtecbatch31 --s3-key sample-1.0.3.jar"
+                        //sh "aws lambda update-function-code --function-name $function_name --region us-east-1 --s3-bucket javasample1 --s3-key sample-1.0.3.jar"
                     }
                 }
 
